@@ -1,0 +1,257 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <groupId>spark</groupId>
+    <artifactId>test</artifactId>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <version>1.0.0</version>
+    <name>test</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.11</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <!--
+
+        <profiles>
+            <profile>
+                <id>orient-2</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.tinkerpop.blueprints</groupId>
+                        <artifactId>blueprints-core</artifactId>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-jdbc</artifactId>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-client</artifactId>
+                    </dependency>
+
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-graphdb</artifactId>
+                    </dependency>
+
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-core</artifactId>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-server</artifactId>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-object</artifactId>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-tools</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-distributed</artifactId>
+                    </dependency>
+                </dependencies>
+
+            </profile>
+
+
+            <profile>
+                <id>orient-3</id>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.tinkerpop.blueprints</groupId>
+                        <artifactId>blueprints-core</artifactId>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-jdbc</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-client</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-graphdb</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-core</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-server</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-object</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-tools</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.orientechnologies</groupId>
+                        <artifactId>orientdb-distributed</artifactId>
+                        <version>${orient-version-3}</version>
+                    </dependency>
+                </dependencies>
+            </profile>
+
+
+        </profiles>
+
+    -->
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <plugins>
+
+            <!-- This plugin compiles Scala files -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <version>3.2.2</version>
+            </plugin>
+
+
+            <!-- This plugin compiles Java files -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- This plugin adds all dependencies to JAR file during 'package' command.
+                Pay EXTRA attention to the 'mainClass' tag. You have to set name of class
+                with entry point to program ('main' method) -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass></mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!--  <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-shade-plugin</artifactId>
+                  <version>3.1.0</version>
+                  <executions>
+                      <execution>
+                          <goals>
+                              <goal>shade</goal>
+                          </goals>
+                          <configuration>
+                              <transformers>
+                                  <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                              </transformers>
+                          </configuration>
+                      </execution>
+                  </executions>
+              </plugin>
+  -->
+
+
+        </plugins>
+    </build>
+
+
+</project>
